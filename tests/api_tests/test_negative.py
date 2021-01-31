@@ -1,6 +1,7 @@
 import requests
 import pytest
 
+
 class TestNegative:
 
     def test_add_booking_invalid_data(self, api_address, booking_invalid_data):
