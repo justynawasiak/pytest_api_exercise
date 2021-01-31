@@ -10,4 +10,4 @@ Python project using pytest framework for API tests.
 
 
 In order to run all tests navigate to project's root directory and execute "__pytest__".
-In order to run tests in parallel use te command "__pytest -n <number>__", where <number> is the number of CPUs to be used.
+In order to run tests in parallel use te command "__pytest -n CPU_count__", where CPU_count is the number of CPUs to be used.
