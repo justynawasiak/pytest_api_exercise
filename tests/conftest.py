@@ -24,6 +24,22 @@ def booking_data():
 
 
 @pytest.fixture()
+def booking_special_characters():
+    return \
+        {
+            "firstname": "`~!@#$%^&*()_+{testing}:<>?,./;'[]-=",
+            "lastname": "`~!@#$%^&*()_+{testing}:<>?,./;'[]-=",
+            "totalprice": 1,
+            "depositpaid": True,
+            "bookingdates": {
+                "checkin": "2021-01-01",
+                "checkout": "2021-12-01"
+            },
+            "additionalneeds": "`~!@#$%^&*()_+{testing}:<>?,./;'[]-="
+        }
+
+
+@pytest.fixture()
 def booking_invalid_data():
     return \
         {

@@ -1,10 +1,26 @@
 import requests
-
+import pytest
 
 class TestNegative:
 
     def test_add_booking_invalid_data(self, api_address, booking_invalid_data):
         r = requests.post(api_address, json=booking_invalid_data)
+        assert r.status_code == 500
+
+    def test_add_booking_empty_body(self, api_address):
+        r = requests.post(api_address, json={})
+        assert r.status_code == 500
+
+    @pytest.mark.parametrize("incomplete_data",
+                             [
+                                 ({"firstname": "tmp_user_firstname"}),
+                                 ({"lastname": "tmp_user_lastname"}),
+                                 ({"totalprice": 10000}),
+                                 ({"depositpaid": False}),
+                                 ({"additionalneeds": "Breakfast"})
+                             ])
+    def test_add_booking_incomplete_data(self, incomplete_data, api_address):
+        r = requests.post(api_address, json=incomplete_data)
         assert r.status_code == 500
 
     def test_get_booking_invalid_id(self, api_address):
@@ -30,3 +46,4 @@ class TestNegative:
         assert r_del.status_code == 403
         r_get_by_id = requests.get(api_address + f"/{id}")
         assert r_get_by_id.status_code == 200
+

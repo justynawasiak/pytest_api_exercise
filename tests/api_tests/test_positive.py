@@ -7,6 +7,10 @@ class TestPositive:
         r = add_new_booking
         assert r['booking'] == booking_data
 
+    def test_add_booking_with_special_chars(self, api_address, booking_special_characters):
+        r = requests.post(api_address, json=booking_special_characters).json()
+        assert r['booking'] == booking_special_characters
+
     def test_get_single_booking(self, add_new_booking, api_address, booking_data):
         id = add_new_booking['bookingid']
         r = requests.get(api_address + f"/{id}")
